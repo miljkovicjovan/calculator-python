@@ -129,7 +129,6 @@ def times():
     text.update(this)
 
 def calculate():
-    text = window['-INPUT-']
     global this
     calculateOutput(this)
 
@@ -154,42 +153,29 @@ def checkComma():
     elif bool(this) == True and thisList[index] == "/":
         window[','].update(disabled = True)
 
+def updatePlusMinusDivide():
+    window['+'].update(disabled = True) 
+    window['*'].update(disabled = True)
+    window['/'].update(disabled = True) 
+    window['-'].update(disabled = True)
+
 #checks when Plus symbol is allowed
 def checkPlusMinusTimes():
     global this
     thisList = list(this)
     index = len(this) - 1
-
     if bool(this) == False:
-        window['+'].update(disabled = True) 
-        window['*'].update(disabled = True)
-        window['/'].update(disabled = True) 
-        window['-'].update(disabled = True) 
+         updatePlusMinusDivide()
     elif bool(this) == True and thisList[index] == "+":
-        window['+'].update(disabled = True)
-        window['-'].update(disabled = True)
-        window['*'].update(disabled = True)
-        window['/'].update(disabled = True)
+        updatePlusMinusDivide()
     elif bool(this) == True and thisList[index] == "-":
-        window['+'].update(disabled = True)
-        window['-'].update(disabled = True)
-        window['*'].update(disabled = True)
-        window['/'].update(disabled = True)
+        updatePlusMinusDivide()
     elif bool(this) == True and thisList[index] == ",":
-        window['+'].update(disabled = True)
-        window['-'].update(disabled = True)
-        window['*'].update(disabled = True)
-        window['/'].update(disabled = True)
+        updatePlusMinusDivide()
     elif bool(this) == True and thisList[index] == "*":
-        window['+'].update(disabled = True)
-        window['-'].update(disabled = True)
-        window['*'].update(disabled = True)
-        window['/'].update(disabled = True)
+        updatePlusMinusDivide()
     elif bool(this) == True and thisList[index] == "/":
-        window['+'].update(disabled = True)
-        window['-'].update(disabled = True)
-        window['*'].update(disabled = True)
-        window['/'].update(disabled = True)
+        updatePlusMinusDivide()
     else:
         window['+'].update(disabled = False)
         window['-'].update(disabled = False)

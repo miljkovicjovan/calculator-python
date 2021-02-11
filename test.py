@@ -7,10 +7,10 @@ layout = [
         sg.Text(text = this, key = '-INPUT-', size=(28,1), background_color= "white", text_color="black", font=('Helvetica', 15)),
     ],
     [
-        sg.Button("1", key = '1', size=(4,2)),sg.Button("2", key = '2', size=(4,2)),sg.Button("3", key = '3', size=(4,2)),sg.VerticalSeparator(),sg.Button("+", key = '+', size=(4,2), disabled = True),sg.Button("-", key = '-', size=(4,2)),sg.Button("CE", key = 'CE', size=(4,2), disabled = True),
+        sg.Button("1", key = '1', size=(4,2)),sg.Button("2", key = '2', size=(4,2)),sg.Button("3", key = '3', size=(4,2)),sg.VerticalSeparator(),sg.Button("+", key = '+', size=(4,2), disabled = True),sg.Button("-", key = '-', size=(4,2), disabled = True),sg.Button("CE", key = 'CE', size=(4,2), disabled = True),
     ],
     [
-        sg.Button("4", key = '4', size=(4,2)),sg.Button("5", key = '5', size=(4,2)),sg.Button("6", key = '6', size=(4,2)),sg.VerticalSeparator(),sg.Button("x", key = 'x', size=(4,2), disabled = True),sg.Button("/", key = '/', size=(4,2), disabled = True),sg.Button("AC", key = 'AC', size=(4,2), disabled = True),
+        sg.Button("4", key = '4', size=(4,2)),sg.Button("5", key = '5', size=(4,2)),sg.Button("6", key = '6', size=(4,2)),sg.VerticalSeparator(),sg.Button("*", key = '*', size=(4,2), disabled = True),sg.Button("/", key = '/', size=(4,2), disabled = True),sg.Button("AC", key = 'AC', size=(4,2), disabled = True),
     ],
     [
         sg.Button("7", key = '7', size=(4,2)),sg.Button("8", key = '8', size=(4,2)),sg.Button("9", key = '9', size=(4,2)),sg.VerticalSeparator(),sg.Button("=", key = '=', size=(4,2), disabled = True),
@@ -125,14 +125,13 @@ def divide():
 def times():
     text = window['-INPUT-']
     global this 
-    this = this + "x"
+    this = this + "*"
     text.update(this)
 
 def calculate():
     text = window['-INPUT-']
-    global this 
-    this = this + "="
-    text.update(this)
+    global this
+    calculateOutput(this)
 
 #checks when Comma symbol is allowed
 def checkComma():
@@ -150,7 +149,7 @@ def checkComma():
         window[','].update(disabled = True)
     elif bool(this) == True and thisList[index] == "-":
         window[','].update(disabled = True)
-    elif bool(this) == True and thisList[index] == "x":
+    elif bool(this) == True and thisList[index] == "*":
         window[','].update(disabled = True)
     elif bool(this) == True and thisList[index] == "/":
         window[','].update(disabled = True)
@@ -163,38 +162,38 @@ def checkPlusMinusTimes():
 
     if bool(this) == False:
         window['+'].update(disabled = True) 
-        window['x'].update(disabled = True)
+        window['*'].update(disabled = True)
         window['/'].update(disabled = True) 
-        window['-'].update(disabled = False) 
+        window['-'].update(disabled = True) 
     elif bool(this) == True and thisList[index] == "+":
         window['+'].update(disabled = True)
         window['-'].update(disabled = True)
-        window['x'].update(disabled = True)
+        window['*'].update(disabled = True)
         window['/'].update(disabled = True)
     elif bool(this) == True and thisList[index] == "-":
         window['+'].update(disabled = True)
         window['-'].update(disabled = True)
-        window['x'].update(disabled = True)
+        window['*'].update(disabled = True)
         window['/'].update(disabled = True)
     elif bool(this) == True and thisList[index] == ",":
         window['+'].update(disabled = True)
         window['-'].update(disabled = True)
-        window['x'].update(disabled = True)
+        window['*'].update(disabled = True)
         window['/'].update(disabled = True)
-    elif bool(this) == True and thisList[index] == "x":
+    elif bool(this) == True and thisList[index] == "*":
         window['+'].update(disabled = True)
         window['-'].update(disabled = True)
-        window['x'].update(disabled = True)
+        window['*'].update(disabled = True)
         window['/'].update(disabled = True)
     elif bool(this) == True and thisList[index] == "/":
         window['+'].update(disabled = True)
         window['-'].update(disabled = True)
-        window['x'].update(disabled = True)
+        window['*'].update(disabled = True)
         window['/'].update(disabled = True)
     else:
         window['+'].update(disabled = False)
         window['-'].update(disabled = False)
-        window['x'].update(disabled = False)
+        window['*'].update(disabled = False)
         window['/'].update(disabled = False)
 
 def checkDelete():
@@ -214,7 +213,7 @@ def checkCalculate():
         window['='].update(disabled = False)
     elif bool(this) == True and "-" in this and thisList[index] == "0":
         window['='].update(disabled = False)
-    elif bool(this) == True and "x" in this and thisList[index] == "0":
+    elif bool(this) == True and "*" in this and thisList[index] == "0":
         window['='].update(disabled = False)
     elif bool(this) == True and "/" in this and thisList[index] == "0":
         window['='].update(disabled = False)
@@ -222,7 +221,7 @@ def checkCalculate():
         window['='].update(disabled = False)
     elif bool(this) == True and "-" in this and thisList[index] == "1":
         window['='].update(disabled = False)
-    elif bool(this) == True and "x" in this and thisList[index] == "1":
+    elif bool(this) == True and "*" in this and thisList[index] == "1":
         window['='].update(disabled = False)
     elif bool(this) == True and "/" in this and thisList[index] == "1":
         window['='].update(disabled = False)
@@ -230,7 +229,7 @@ def checkCalculate():
         window['='].update(disabled = False)
     elif bool(this) == True and "-" in this and thisList[index] == "2":
         window['='].update(disabled = False)
-    elif bool(this) == True and "x" in this and thisList[index] == "2":
+    elif bool(this) == True and "*" in this and thisList[index] == "2":
         window['='].update(disabled = False)
     elif bool(this) == True and "/" in this and thisList[index] == "2":
         window['='].update(disabled = False)
@@ -238,7 +237,7 @@ def checkCalculate():
         window['='].update(disabled = False)
     elif bool(this) == True and "-" in this and thisList[index] == "3":
         window['='].update(disabled = False)
-    elif bool(this) == True and "x" in this and thisList[index] == "3":
+    elif bool(this) == True and "*" in this and thisList[index] == "3":
         window['='].update(disabled = False)
     elif bool(this) == True and "/" in this and thisList[index] == "3":
         window['='].update(disabled = False)
@@ -246,7 +245,7 @@ def checkCalculate():
         window['='].update(disabled = False)
     elif bool(this) == True and "-" in this and thisList[index] == "4":
         window['='].update(disabled = False)
-    elif bool(this) == True and "x" in this and thisList[index] == "4":
+    elif bool(this) == True and "*" in this and thisList[index] == "4":
         window['='].update(disabled = False)
     elif bool(this) == True and "/" in this and thisList[index] == "4":
         window['='].update(disabled = False)
@@ -254,7 +253,7 @@ def checkCalculate():
         window['='].update(disabled = False)
     elif bool(this) == True and "-" in this and thisList[index] == "5":
         window['='].update(disabled = False)
-    elif bool(this) == True and "x" in this and thisList[index] == "5":
+    elif bool(this) == True and "*" in this and thisList[index] == "5":
         window['='].update(disabled = False)
     elif bool(this) == True and "/" in this and thisList[index] == "5":
         window['='].update(disabled = False)
@@ -262,7 +261,7 @@ def checkCalculate():
         window['='].update(disabled = False)
     elif bool(this) == True and "-" in this and thisList[index] == "6":
         window['='].update(disabled = False)
-    elif bool(this) == True and "x" in this and thisList[index] == "6":
+    elif bool(this) == True and "*" in this and thisList[index] == "6":
         window['='].update(disabled = False)
     elif bool(this) == True and "/" in this and thisList[index] == "6":
         window['='].update(disabled = False)
@@ -270,7 +269,7 @@ def checkCalculate():
         window['='].update(disabled = False)
     elif bool(this) == True and "-" in this and thisList[index] == "7":
         window['='].update(disabled = False)
-    elif bool(this) == True and "x" in this and thisList[index] == "7":
+    elif bool(this) == True and "*" in this and thisList[index] == "7":
         window['='].update(disabled = False)
     elif bool(this) == True and "/" in this and thisList[index] == "7":
         window['='].update(disabled = False)
@@ -278,7 +277,7 @@ def checkCalculate():
         window['='].update(disabled = False)
     elif bool(this) == True and "-" in this and thisList[index] == "8":
         window['='].update(disabled = False)
-    elif bool(this) == True and "x" in this and thisList[index] == "8":
+    elif bool(this) == True and "*" in this and thisList[index] == "8":
         window['='].update(disabled = False)
     elif bool(this) == True and "/" in this and thisList[index] == "8":
         window['='].update(disabled = False)
@@ -286,18 +285,29 @@ def checkCalculate():
         window['='].update(disabled = False)
     elif bool(this) == True and "-" in this and thisList[index] == "9":
         window['='].update(disabled = False)
-    elif bool(this) == True and "x" in this and thisList[index] == "9":
+    elif bool(this) == True and "*" in this and thisList[index] == "9":
         window['='].update(disabled = False)
     elif bool(this) == True and "/" in this and thisList[index] == "9":
         window['='].update(disabled = False)
     else:
         window['='].update(disabled = True)    
 
+def checkLimit():
+    global this
+    if len(this) >= 27:
+        sg.popup("Maximum length allowed is 27!!", title = "Too many characters!")
+
 def checkText():
     checkComma()
     checkPlusMinusTimes()
     checkDelete()
     checkCalculate()
+    checkLimit()
+
+def calculateOutput(x):
+    text = window['-INPUT-']
+    this = eval(x)
+    text.update(this)
 
 while True:
     event, values = window.read()
@@ -335,7 +345,7 @@ while True:
         minus()
     elif event == '/':
         divide()
-    elif event == 'x':
+    elif event == '*':
         times()
     elif event == '=':
         calculate()
